@@ -3,7 +3,7 @@ package examples
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -62,7 +62,7 @@ func HTTPError() {
 				fmt.Printf("unexpected status code: %v\n", resp.StatusCode)
 			}
 		}
-		data, err := ioutil.ReadAll(resp.Body)
+		data, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fmt.Println("err:", err)
 		}
