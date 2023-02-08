@@ -1,3 +1,6 @@
+//go:build darwin
+// +build darwin
+
 package examples
 
 import (
@@ -9,7 +12,7 @@ import (
 )
 
 func Pagination() {
-	pagesCmd := exec.Command(filepath.Join("bin", "pages"))
+	pagesCmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "pages"))
 	reader, writer, err := os.Pipe()
 	if err != nil {
 		panic(err)

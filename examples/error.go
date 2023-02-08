@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 )
@@ -21,7 +22,7 @@ func HandlingDoesNotExistErrors() {
 }
 
 func HandlingOtherErrors() {
-	cmd := exec.Command(filepath.Join("bin", "error"))
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "error"))
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out

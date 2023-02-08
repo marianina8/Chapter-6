@@ -2,6 +2,7 @@ package examples
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"time"
@@ -9,7 +10,7 @@ import (
 
 func Timeout() {
 	errChan := make(chan error, 1)
-	cmd := exec.Command(filepath.Join("bin", "timeout"))
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "timeout"))
 	if err := cmd.Start(); err != nil {
 		panic(err)
 	}

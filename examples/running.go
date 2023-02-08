@@ -1,3 +1,6 @@
+//go:build darwin
+// +build darwin
+
 package examples
 
 import (
@@ -9,7 +12,7 @@ import (
 )
 
 func RunMethod() {
-	cmd := exec.Command(filepath.Join("bin", "lettercount"), "four")
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "lettercount"), "four")
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -29,7 +32,7 @@ func RunMethod() {
 }
 
 func StartMethod() {
-	cmd := exec.Command(filepath.Join("bin", "lettercount"), "four")
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "lettercount"), "four")
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -53,7 +56,7 @@ func StartMethod() {
 }
 
 func OutputMethod() {
-	cmd := exec.Command(filepath.Join("bin", "lettercount"), "four")
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "lettercount"), "four")
 	cmd.Stdin = os.Stdin
 	cmd.Stderr = os.Stderr
 	var count int
@@ -74,7 +77,7 @@ func OutputMethod() {
 }
 
 func CombinedOutputMethod() {
-	cmd := exec.Command(filepath.Join("bin", "lettercount"), "four")
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "lettercount"), "four")
 	cmd.Stdin = os.Stdin
 	var count int
 	reader, writer, err := os.Pipe()

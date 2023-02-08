@@ -1,9 +1,7 @@
+#!/bin/bash
 
-.PHONY: all test clean build
-
-all: clean test build
-
-install:
+# Generate linux builds
+    echo "installing for linux..."  
 	go install cmd/uppercase/uppercase.go
 	go install cmd/lettercount/lettercount.go
 	go install cmd/pages/pages.go
@@ -11,7 +9,3 @@ install:
 	go install cmd/panic/panic.go
 	go install cmd/error/error.go
 	go install cmd/api/api.go
-
-clean:
-	go clean -cache -testcache -modcache
-	rm -rf bin/

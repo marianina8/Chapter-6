@@ -1,3 +1,6 @@
+//go:build darwin
+// +build darwin
+
 package examples
 
 import (
@@ -10,11 +13,11 @@ import (
 
 func CreateCommandUsingStruct() {
 	cmd := exec.Cmd{}
-	cmd.Path = filepath.Join("bin", "uppercase")        // only required field, path of the command to run
-	cmd.Args = []string{"uppercase", "hack the planet"} // represents command and arguments
-	cmd.Stdin = os.Stdin                                // io.Reader
-	cmd.Stdout = os.Stdout                              // io.Writer
-	cmd.Stderr = os.Stderr                              // io.Writer
+	cmd.Path = filepath.Join(os.Getenv("GOPATH"), "bin", "uppercase") // only required field, path of the command to run
+	cmd.Args = []string{"uppercase", "hack the planet"}               // represents command and arguments
+	cmd.Stdin = os.Stdin                                              // io.Reader
+	cmd.Stdout = os.Stdout                                            // io.Writer
+	cmd.Stderr = os.Stderr                                            // io.Writer
 	reader, writer, err := os.Pipe()
 	if err != nil {
 		panic(err)
@@ -37,7 +40,7 @@ func CreateCommandUsingStruct() {
 }
 
 func CreateCommandUsingCommandFunction() {
-	cmd := exec.Command(filepath.Join("bin", "uppercase"), "hello world")
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "uppercase"), "hello world")
 	reader, writer, err := os.Pipe()
 	if err != nil {
 		panic(err)

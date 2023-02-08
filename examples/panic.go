@@ -3,12 +3,13 @@ package examples
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 )
 
 func Panic() {
-	cmd := exec.Command(filepath.Join("bin", "panic"))
+	cmd := exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "panic"))
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
